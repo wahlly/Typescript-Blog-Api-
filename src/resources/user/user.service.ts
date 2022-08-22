@@ -7,14 +7,9 @@ class UserService {
       /**
        * Register a new user
        */
-      public async register(
-            name: string,
-            email: string,
-            password: string,
-            role: string
-      ): Promise<string | Error> {
+      public async register(payload: object): Promise<string | Error> {
             try{
-                  const user = await this.user.create({ name, email, password, role });
+                  const user = await this.user.create({ ...payload });
                   return token.createToken(user);
             } catch(err) {
                   throw new Error("Unable to create user");

@@ -23,9 +23,7 @@ class UserController implements Controller {
 
       private register = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
             try{
-                  const { username, email, password } = req.body;
-
-                  const token = await this.UserService.register(username, email, password, 'user');
+                  const token = await this.UserService.register(req.body);
 
                   res.status(200).json({ token });
             } catch(err: any) {
